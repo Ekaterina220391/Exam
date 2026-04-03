@@ -4,7 +4,6 @@ import com.example.exam.model.Question;
 import com.example.exam.service.QuestionService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Collection;
 
 @RestController
