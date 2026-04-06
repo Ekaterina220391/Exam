@@ -19,11 +19,13 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public boolean remove(Question existingQuestion) {
+
         return questions.remove(existingQuestion);
     }
 
     @Override
     public Collection<Question> getAll() {
+
         return new ArrayList<>(questions);  // Копируем в List
     }
 
