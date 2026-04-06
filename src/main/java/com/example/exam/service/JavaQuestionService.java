@@ -8,6 +8,7 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question add(String question, String answer) {
+
         return add(new Question(question, answer));
     }
 

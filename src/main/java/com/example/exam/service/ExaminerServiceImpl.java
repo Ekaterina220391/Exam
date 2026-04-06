@@ -25,7 +25,7 @@ public class ExaminerServiceImpl implements ExaminerService {
         Random random = new Random();
         while (result.size() < amount) {
             int index = random.nextInt(allQuestions.size());
-            result.add(allQuestions.get(index));  // Уникальные!
+            result.add(allQuestions.get(index));
         }
         return result;
     }

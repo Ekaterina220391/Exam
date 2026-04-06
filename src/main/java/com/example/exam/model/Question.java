@@ -25,7 +25,6 @@ public class Question {
         return Objects.equals(question, question1.question) &&
                 Objects.equals(answer, question1.answer);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(question, answer);
