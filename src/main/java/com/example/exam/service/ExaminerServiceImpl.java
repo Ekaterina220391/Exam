@@ -8,6 +8,7 @@ import java.util.*;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
+
     private final QuestionService questionService;
 
     public ExaminerServiceImpl(@Qualifier("javaQuestionService") QuestionService questionService) {
@@ -17,6 +18,7 @@ public class ExaminerServiceImpl implements ExaminerService {
     @Override
     public Collection<Question> getQuestions(int amount) {
         List<Question> allQuestions = new ArrayList<>(questionService.getAll());
+
         if (amount > allQuestions.size()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Недостаточно вопросов!");
         }

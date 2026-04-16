@@ -1,8 +1,10 @@
 package com.example.exam.service;
 
 import com.example.exam.model.Question;
-import java.util.*;
+import org.springframework.stereotype.Service;
 
+import java.util.*;
+@Service("javaQuestionService")
 public class JavaQuestionService implements QuestionService {
     private final Set<Question> questions = new HashSet<>();
 
