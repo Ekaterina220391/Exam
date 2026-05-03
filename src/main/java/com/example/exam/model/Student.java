@@ -7,8 +7,13 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private Integer age;
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
 
     public Long getId() {
         return id;
@@ -22,6 +27,10 @@ public class Student {
         return age;
     }
 
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -32,5 +41,9 @@ public class Student {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 }

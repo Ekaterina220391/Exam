@@ -1,5 +1,6 @@
 package com.example.exam.service;
 
+import com.example.exam.model.Faculty;
 import com.example.exam.model.Student;
 import com.example.exam.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,9 @@ public class StudentService {
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
-
+    public List<Student> findByAgeBetween(int min, int max) {
+        return studentRepository.findByAgeBetween(min, max);
+    }
     public Student updateStudent(Long id, Student student) {
         Student existingStudent = studentRepository.findById(id).orElse(null);
         if (existingStudent == null) {
@@ -42,5 +45,12 @@ public class StudentService {
         existingStudent.setAge(student.getAge());
 
         return studentRepository.save(existingStudent);
+    }
+    public Faculty getStudentFaculty(Long id) {
+        Student student = studentRepository.findById(id).orElse(null);
+        if (student == null) {
+            return null;
+        }
+        return student.getFaculty();
     }
 }

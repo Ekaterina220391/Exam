@@ -1,8 +1,8 @@
 package com.example.exam.service;
 
 import com.example.exam.model.Faculty;
+import com.example.exam.model.Student;
 import com.example.exam.repository.FacultyRepository;
-import com.example.exam.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +32,11 @@ public class FacultyService {
     public void deleteFaculty(Long id) {
         facultyRepository.deleteById(id);
     }
+
+    public List<Faculty> searchByNameOrColor(String text) {
+        return facultyRepository.findByNameContainingIgnoreCaseOrColorContainingIgnoreCase(text, text);
+    }
+
     public Faculty updateFaculty(Long id, Faculty faculty) {
         Faculty existingFaculty = facultyRepository.findById(id).orElse(null);
         if (existingFaculty == null) {
@@ -42,5 +47,12 @@ public class FacultyService {
         existingFaculty.setColor(faculty.getColor());
 
         return facultyRepository.save(existingFaculty);
+    }
+    public List<Student> getFacultyStudents(Long id) {
+        Faculty faculty = facultyRepository.findById(id).orElse(null);
+        if (faculty == null) {
+            return null;
+        }
+        return faculty.getStudents();
     }
 }
