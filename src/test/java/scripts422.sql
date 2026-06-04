@@ -5,7 +5,6 @@ CREATE TABLE car (
     price NUMERIC(12, 2)
 );
 
-
 CREATE TABLE person (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
