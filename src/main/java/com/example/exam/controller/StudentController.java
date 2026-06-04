@@ -3,6 +3,7 @@ package com.example.exam.controller;
 import com.example.exam.model.Faculty;
 import com.example.exam.model.Student;
 import com.example.exam.service.StudentService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,5 +51,22 @@ public class StudentController {
     @GetMapping("/{id}/faculty")
     public Faculty getStudentFaculty(@PathVariable Long id) {
         return studentService.getStudentFaculty(id);
+    }
+    @GetMapping("/count")
+    public ResponseEntity<Long> countAllStudents() {
+        long count = studentService.countAllStudents();
+        return ResponseEntity.ok(count);
+    }
+
+    @GetMapping("/average-age")
+    public ResponseEntity<Double> averageAge() {
+        double avgAge = studentService.averageAge();
+        return ResponseEntity.ok(avgAge);
+    }
+
+    @GetMapping("/last-5")
+    public ResponseEntity<List<Student>> getLast5Students() {
+        List<Student> students = studentService.getLast5Students();
+        return ResponseEntity.ok(students);
     }
 }
