@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -91,4 +92,23 @@ public class StudentService {
         logger.info("Was invoked method for get last 5 students");
         return studentRepository.findLast5Students();
     }
+    public List<String> getAllStudentsStartingWithA() {
+        logger.info("Was invoked method for get all students starting with A");
+
+        return studentRepository.findAll().stream()
+                .map(Student::getName)
+                .map(String::toUpperCase)
+                .filter(name -> name.startsWith("A"))
+                .sorted()
+                .collect(Collectors.toList());
+    }
+    public double getAverageAgeByStream() {
+        logger.info("Was invoked method for get average age by stream");
+
+        return studentRepository.findAll().stream()
+                .mapToInt(Student::getAge)
+                .average()
+                .orElse(0.0);
+    }
 }
+

@@ -69,4 +69,13 @@ public class StudentController {
         List<Student> students = studentService.getLast5Students();
         return ResponseEntity.ok(students);
     }
+    @GetMapping("/names-starting-with-a")
+    public List<String> getNamesStartingWithA() {
+        return studentService.getAllStudentsStartingWithA();
+    }
+
+    @GetMapping("/average-age")
+    public double getAverageAgeByStream() {
+        return studentService.getAverageAgeByStream();
+    }
 }

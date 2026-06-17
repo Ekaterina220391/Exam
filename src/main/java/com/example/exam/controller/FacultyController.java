@@ -5,6 +5,7 @@ import com.example.exam.model.Student;
 import com.example.exam.service.FacultyService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -46,8 +47,15 @@ public class FacultyController {
     public void deleteFaculty(@PathVariable Long id) {
         facultyService.deleteFaculty(id);
     }
+
+
     @GetMapping("/{id}/students")
-    public List<Student> getFacultyStudents(@PathVariable Long id) {
-        return facultyService.getFacultyStudents(id);
+    public Collection<Student> getStudentsByFacultyId(@PathVariable Long id) {
+        return facultyService.getStudentsByFacultyId(id);
+    }
+
+    @GetMapping("/longest-name")
+    public String getLongestName() {
+        return facultyService.getLongestFacultyName();
     }
 }
