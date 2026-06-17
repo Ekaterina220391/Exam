@@ -57,7 +57,6 @@ public class StudentController {
         long count = studentService.countAllStudents();
         return ResponseEntity.ok(count);
     }
-
     @GetMapping("/average-age")
     public ResponseEntity<Double> averageAge() {
         double avgAge = studentService.averageAge();
