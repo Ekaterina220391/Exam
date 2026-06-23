@@ -110,45 +110,59 @@ public class StudentService {
                 .average()
                 .orElse(0.0);
     }
-    public void printNamesParallel() {
+    public void printParallel() {
         List<Student> students = studentRepository.findAll();
+
         if (students.size() < 6) {
-            logger.warn("Not enough students in DB (need at least 6)");
+            System.out.println("Нужно минимум 6 студентов в базе!");
             return;
         }
+
         System.out.println(students.get(0).getName());
         System.out.println(students.get(1).getName());
+
+
         new Thread(() -> {
             System.out.println(students.get(2).getName());
             System.out.println(students.get(3).getName());
         }).start();
+
 
         new Thread(() -> {
             System.out.println(students.get(4).getName());
             System.out.println(students.get(5).getName());
         }).start();
     }
-    public void printNamesSynchronized() {
+
+    public void printSynchronized() {
         List<Student> students = studentRepository.findAll();
+
         if (students.size() < 6) {
-            logger.warn("Not enough students in DB (need at least 6)");
+            System.out.println("Нужно минимум 6 студентов в базе!");
             return;
         }
+
+
         printNameSync(students.get(0).getName());
         printNameSync(students.get(1).getName());
+
 
         new Thread(() -> {
             printNameSync(students.get(2).getName());
             printNameSync(students.get(3).getName());
         }).start();
 
+
         new Thread(() -> {
             printNameSync(students.get(4).getName());
             printNameSync(students.get(5).getName());
         }).start();
     }
+
+
     private synchronized void printNameSync(String name) {
         System.out.println(name);
     }
 }
+
 
